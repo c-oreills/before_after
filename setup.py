@@ -15,6 +15,8 @@ setuptools.setup(
 
     description="before_after provides utilities for testing race conditions",
     url='https://github.com/c-oreills/before_after',
+    download_url='https://github.com/c-oreills/before_after/tarball/{v}'.
+        format(v=__version__),
     author="Christy O'Reilly",
     author_email='christy@oreills.co.uk',
 
@@ -30,6 +32,7 @@ setuptools.setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
     ],
+    keywords = ['testing', 'race conditions'],
 
     install_requires=open('requirements.txt').readlines(),
 )
