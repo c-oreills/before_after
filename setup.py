@@ -42,5 +42,5 @@ setuptools.setup(
     ],
     keywords = ['testing', 'race conditions'],
 
-    install_requires=open('requirements.txt').readlines(),
+    install_requires=['mock==1.0.1'],
 )
