@@ -1,7 +1,7 @@
 """Package for before_after."""
 
 __project__ = 'before_after'
-__version__ = '0.1.0'
+__version__ = '0.1.2'
 
 VERSION = __project__ + '-' + __version__
 
