@@ -1,7 +1,7 @@
 # before_after
 before_after provides utilities to help test race conditions.
 
-When testing Python programs that run in multiple threads or multiple processes, it can be useful to simulate race conditions in tests, to ensure your program handles them properly. before_after provides two functions, before and after, that allows you to insert pre or post functions that will be called before/after any function in your code.
+When testing Python programs that run in multiple threads or multiple processes it can be useful to simulate race conditions in tests, to ensure you handle them properly. before_after provides two functions, `before` and `after`, that allow you to insert pre or post functions that will be called before/after a function in your code.
 
 ## Patching
 
@@ -33,7 +33,7 @@ before_after is sugar over the [Mock library](http://www.voidspace.org.uk/python
 
 ## Use with recursive functions
 
-By default, before_after only calls the before_fn/after_fn function once. This is useful if you're calling the original function within the before_fn/after_fn, since otherwise you'll blow the stack. This behaviour can be disabled by passing once=False.
+By default, before_after only calls the before_fn/after_fn function once. This is useful if you're calling the original function within the before_fn/after_fn, since otherwise you'll blow the stack. This behaviour can be disabled by passing `once=False`.
 
     my_list = []
 
@@ -64,4 +64,4 @@ By default, before_after only calls the before_fn/after_fn function once. This i
     # ...
     # RuntimeError: maximum recursion depth exceeded while calling a Python object
 
-It's recommended that if you're passing once=False that you make sure your program will exit cleanly!
+It's recommended that if you're passing `once=False` that you make sure your program will exit cleanly!
