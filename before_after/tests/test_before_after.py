@@ -81,3 +81,12 @@ class TestBeforeAfter(TestCase):
             test_functions.sample_fn(4)
 
         self.assertEqual(test_functions.test_list, [1, 2, 3, 4])
+
+    def test_before_method(self):
+        def before_fn(*a):
+            test_functions.test_list.append(1)
+
+        with before('before_after.tests.test_functions.Sample.method', before_fn):
+            test_functions.Sample().method(2)
+
+        self.assertEqual(test_functions.test_list, [1, 2])
