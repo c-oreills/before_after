@@ -68,3 +68,29 @@ By default, before_after only calls the before_fn/after_fn function once. This i
     # RuntimeError: maximum recursion depth exceeded while calling a Python object
 
 It's recommended that if you're passing `once=False` that you make sure your program will exit cleanly!
+
+## Use with methods
+
+Since v1.0.0 before_after can be used on function methods. Make sure your before_fn/after_fn accepts a `self` argument.
+
+    class Greeter(object):
+        def __init__(self):
+            self.greeted = []
+
+        def greet(self, name):
+            print 'Hi there', name
+            self.greeted.append(name)
+            print 'This is now a party of', len(self.greeted)
+
+    def after_fn(self, name):
+        self.greet("{name}'s guest".format(name=name))
+
+    greeter = Greeter()
+
+    with before_after.after('__main__.Greeter.greet', after_fn):
+        greeter.greet('Alice')
+
+    # Hi there Alice
+    # This is now a party of 1
+    # Hi there Alice's guest
+    # This is now a party of 2

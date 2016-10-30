@@ -1,0 +1,8 @@
+1.0.0
+- Support patching methods on instances, patch directly without using MagicMock. (thanks Suor)
+
+0.1.3
+- Readme updates
+
+0.1.0
+- Initial release
