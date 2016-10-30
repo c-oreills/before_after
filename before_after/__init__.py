@@ -55,5 +55,5 @@ def before_after(
     patcher = patch(target, **kwargs)
     original, _ = patcher.get_original()
     patcher.new = before_after_wrap(original)
-    with patcher as mock_fn:
+    with patcher:
         yield
