@@ -9,6 +9,9 @@ def sample_fn(arg):
 
 
 class Sample(object):
+    def __init__(self):
+        self.instance_list = []
+
     def method(self, arg):
-        print 'Sample.method'
-        test_list.append(arg)
+        print 'Sample.method', arg
+        self.instance_list.append(arg)
