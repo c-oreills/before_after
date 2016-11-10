@@ -7,15 +7,7 @@ import setuptools
 from before_after import __project__, __version__
 
 
-# Convert README.md from Markdown to rst if possible
-try:
-    from pypandoc import convert
-except ImportError:
-    read_md = lambda f: open(f, 'r').read()
-else:
-    read_md = lambda f: convert(f, 'rst')
-
-README = read_md('README.md')
+README = open('README.rst').read()
 
 setuptools.setup(
     name=__project__,
