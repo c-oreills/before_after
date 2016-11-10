@@ -1,16 +1,25 @@
-# before_after
+before_after
+============
+
 before_after provides utilities to help test race conditions.
 
-When testing Python programs that run in multiple threads or processes it's useful to simulate race conditions to ensure you handle them properly. before_after provides two functions, `before` and `after`, that allow you to insert pre or post functions to be called before/after a function you want to test.
+When testing Python programs that run in multiple threads or processes it's useful to simulate race conditions to ensure you handle them properly. before_after provides two functions, ``before`` and ``after``, that allow you to insert pre or post functions to be called before/after a function you want to test.
 
-See this [blog post](http://www.oreills.co.uk/2015/03/01/testing-race-conditions-in-python.html) for a practical example of using before_after in tests.
+See this `blog post <http://www.oreills.co.uk/2015/03/01/testing-race-conditions-in-python.html>`_ for a practical example of using before_after in tests.
 
-## Patching
 
-before_after is sugar over the [Mock library](http://www.voidspace.org.uk/python/mock/). It's recommended that you read the docs before using before_after, especially [Where to patch](http://www.voidspace.org.uk/python/mock/patch.html#where-to-patch).
+Patching
+--------
 
-## Example usage
-[Practical example of testing race conditions](http://www.oreills.co.uk/2015/03/01/testing-race-conditions-in-python.html)
+before_after is sugar over the `Mock library <http://www.voidspace.org.uk/python/mock/>`_. It's recommended that you read the docs before using before_after, especially `Where to patch <http://www.voidspace.org.uk/python/mock/patch.html#where-to-patch>`_.
+
+
+Example usage
+-------------
+
+`Practical example of testing race conditions <http://www.oreills.co.uk/2015/03/01/testing-race-conditions-in-python.html>`_
+
+.. code:: python
 
     def before_fn(*a, **k):
         print 'before_fn called with', a, k
@@ -34,9 +43,13 @@ before_after is sugar over the [Mock library](http://www.voidspace.org.uk/python
     # Hi there everybody!
     # after_fn called with ('everybody',) {'greeting': 'Hi there'}
 
-## Use with recursive functions
 
-By default, before_after only calls the before_fn/after_fn function once. This is useful if you're calling the original function within the before_fn/after_fn, since otherwise you'll blow the stack. This behaviour can be disabled by passing `once=False`.
+Use with recursive functions
+----------------------------
+
+By default, before_after only calls the before_fn/after_fn function once. This is useful if you're calling the original function within the before_fn/after_fn, since otherwise you'll blow the stack. This behaviour can be disabled by passing ``once=False``.
+
+.. code:: python
 
     my_list = []
 
@@ -67,11 +80,15 @@ By default, before_after only calls the before_fn/after_fn function once. This i
     # ...
     # RuntimeError: maximum recursion depth exceeded while calling a Python object
 
-It's recommended that if you're passing `once=False` that you make sure your program will exit cleanly!
+It's recommended that if you're passing ``once=False`` that you make sure your program will exit cleanly!
 
-## Use with methods
 
-Since v1.0.0 before_after can be used on function methods. Make sure your before_fn/after_fn accepts a `self` argument.
+Use with methods
+----------------
+
+Since v1.0.0 before_after can be used on function methods. Make sure your before_fn/after_fn accepts a ``self`` argument.
+
+.. code:: python
 
     class Greeter(object):
         def __init__(self):
