@@ -1,3 +1,6 @@
+1.0.1
+- Update links to c-oreills.com
+
 1.0.0
 - Support patching methods on instances, patch directly without using MagicMock. (thanks Suor)
 

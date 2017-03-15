@@ -5,7 +5,7 @@ before_after provides utilities to help test race conditions.
 
 When testing Python programs that run in multiple threads or processes it's useful to simulate race conditions to ensure you handle them properly. before_after provides two functions, ``before`` and ``after``, that allow you to insert pre or post functions to be called before/after a function you want to test.
 
-See this `blog post <http://www.oreills.co.uk/2015/03/01/testing-race-conditions-in-python.html>`_ for a practical example of using before_after in tests.
+See this `blog post <http://www.c-oreills.com/2015/03/01/testing-race-conditions-in-python.html>`_ for a practical example of using before_after in tests.
 
 
 Patching
@@ -17,7 +17,7 @@ before_after is sugar over the `Mock library <http://www.voidspace.org.uk/python
 Example usage
 -------------
 
-`Practical example of testing race conditions <http://www.oreills.co.uk/2015/03/01/testing-race-conditions-in-python.html>`_
+`Practical example of testing race conditions <http://www.c-oreills.com/2015/03/01/testing-race-conditions-in-python.html>`_
 
 .. code:: python
 
