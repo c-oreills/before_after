@@ -85,7 +85,7 @@ class TestBeforeAfter(TestCase):
     def test_before_method(self):
         sample_instance = test_functions.Sample()
 
-        def before_fn(self, *a):
+        def before_fn(s, *a):
             sample_instance.instance_list.append(1)
 
         with before('before_after.tests.test_functions.Sample.method', before_fn):
