@@ -44,9 +44,12 @@ def before_after(
 
         if before_fn:
             before_fn(*a, **k)
-        ret = fn(*a, **k)
-        if after_fn:
-            after_fn(*a, **k)
+        try:
+            ret = fn(*a, **k)
+        finally:
+            if after_fn:
+                after_fn(*a, **k)
+
         return ret
 
     from mock import patch

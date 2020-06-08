@@ -102,3 +102,18 @@ class TestBeforeAfter(TestCase):
             test_functions.Sample.class_method(2)
 
         self.assertEqual(test_functions.Sample.CLASS_LIST, [1, 2])
+
+    def test_after_called_exception(self):
+        sample_instance = test_functions.Sample()
+
+        def after_fn(self, *a):
+            sample_instance.instance_list.append(2)
+
+        with after('before_after.tests.test_functions.Sample.method_with_exception', after_fn):
+            try:
+                sample_instance.method_with_exception(1)
+                self.fail("Expected exception to be raised!")
+            except:
+                pass
+
+        self.assertEqual(sample_instance.instance_list, [1, 2])

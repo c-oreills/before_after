@@ -18,6 +18,10 @@ class Sample(object):
         print('Sample.method', arg)
         self.instance_list.append(arg)
 
+    def method_with_exception(self, arg):
+        self.method(arg)
+        raise Exception
+
     @classmethod
     def class_method(cls, arg):
         print('Sample.class_method', arg)
