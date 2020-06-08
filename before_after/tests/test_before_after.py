@@ -9,6 +9,7 @@ from before_after.tests import test_functions
 class TestBeforeAfter(TestCase):
     def setUp(self):
         test_functions.reset_test_list()
+        test_functions.CLASS_LIST = []
         super(TestBeforeAfter, self).setUp()
 
     def test_before(self):
@@ -92,3 +93,12 @@ class TestBeforeAfter(TestCase):
             sample_instance.method(2)
 
         self.assertEqual(sample_instance.instance_list, [1, 2])
+
+    def test_before_classmethod(self):
+        def before_fn(*a):
+            test_functions.Sample.CLASS_LIST.append(1)
+
+        with before('before_after.tests.test_functions.Sample.class_method', before_fn):
+            test_functions.Sample.class_method(2)
+
+        self.assertEqual(test_functions.Sample.CLASS_LIST, [1, 2])

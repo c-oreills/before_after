@@ -14,6 +14,7 @@ if not sys.version_info >= PYTHON_VERSION:  # pragma: no cover (manual test)
 
 from contextlib import contextmanager
 from functools import wraps
+import wrapt
 
 
 def before(target, fn, **kwargs):
@@ -27,28 +28,26 @@ def after(target, fn, **kwargs):
 @contextmanager
 def before_after(
         target, before_fn=None, after_fn=None, once=True, **kwargs):
-    def before_after_wrap(fn):
-        called = []
+    called = []
+    @wrapt.decorator
+    def before_after_wrap(fn, instance, a, k):
 
-        @wraps(fn)
-        def inner(*a, **k):
-            # If once is True, then don't call if this function has already
-            # been called
-            if once:
-                if called:
-                    return fn(*a, **k)
-                else:
-                    # Hack for lack of nonlocal keyword in Python 2: append to
-                    # list to maked called truthy
-                    called.append(True)
+        # If once is True, then don't call if this function has already
+        # been called
+        if once:
+            if called:
+                return fn(*a, **k)
+            else:
+                # Hack for lack of nonlocal keyword in Python 2: append to
+                # list to maked called truthy
+                called.append(True)
 
-            if before_fn:
-                before_fn(*a, **k)
-            ret = fn(*a, **k)
-            if after_fn:
-                after_fn(*a, **k)
-            return ret
-        return inner
+        if before_fn:
+            before_fn(*a, **k)
+        ret = fn(*a, **k)
+        if after_fn:
+            after_fn(*a, **k)
+        return ret
 
     from mock import patch
 
