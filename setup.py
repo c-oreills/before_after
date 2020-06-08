@@ -34,5 +34,5 @@ setuptools.setup(
     ],
     keywords = ['testing', 'race conditions'],
 
-    install_requires=['mock==1.0.1'],
+    install_requires=['mock==1.0.1', 'wrapt'],
 )
