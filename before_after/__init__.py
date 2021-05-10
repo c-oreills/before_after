@@ -50,7 +50,10 @@ def before_after(
             return ret
         return inner
 
-    from mock import patch
+    if sys.version_info >= (3, 3):
+        from unittest.mock import patch
+    else:
+        from mock import patch
 
     patcher = patch(target, **kwargs)
     original, _ = patcher.get_original()

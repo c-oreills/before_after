@@ -31,8 +31,9 @@ setuptools.setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
     ],
     keywords=['testing', 'race conditions'],
 
-    install_requires=['mock>=1.0.1'],
+    install_requires=['mock>=1.0.1; python_version < "3.3"'],
 )
